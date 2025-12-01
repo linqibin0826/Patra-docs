@@ -8,16 +8,14 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
-    pageTitleSuffix: "",
+    pageTitle: "Patra 文档",
+    pageTitleSuffix: " | Patra",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
-    },
-    locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    analytics: null,
+    locale: "zh-CN",
+    baseUrl: "linqibin0826.github.io/Patra-docs",
+    ignorePatterns: ["private", "templates", ".obsidian", ".claude", "00-inbox", "attachments", "_config.yml"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
