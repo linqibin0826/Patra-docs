@@ -1,3 +1,233 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// ============================================
+// Patra 文档站点自定义样式
+// 风格：温暖舒适（类似 Notion/Obsidian）
+// ============================================
+
+// --------------------------------------------
+// 1. 字体微调
+// --------------------------------------------
+body {
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+// 代码块优化
+pre {
+  font-size: 14px;
+  line-height: 1.6;
+  border-radius: 8px;
+}
+
+code {
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+}
+
+// --------------------------------------------
+// 2. 首页样式
+// --------------------------------------------
+.homepage-hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--light) 0%, var(--lightgray) 100%);
+  border-radius: 12px;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+}
+
+.homepage-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.card {
+  padding: 1.5rem;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  p {
+    color: var(--darkgray);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    font-weight: 500;
+    color: var(--secondary);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// --------------------------------------------
+// 3. 链接样式优化
+// --------------------------------------------
+a {
+  transition: color 0.15s ease;
+
+  &:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+}
+
+// 内部链接特殊样式
+a.internal {
+  background: linear-gradient(transparent 60%, var(--highlight) 60%);
+  padding: 0 2px;
+  border-radius: 2px;
+
+  &:hover {
+    background: var(--highlight);
+  }
+}
+
+// --------------------------------------------
+// 4. 图片样式
+// --------------------------------------------
+article img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+// --------------------------------------------
+// 5. 引用块优化
+// --------------------------------------------
+blockquote {
+  border-left: 3px solid var(--secondary);
+  background: var(--highlight);
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  font-style: normal;
+  margin: 1.5rem 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+// --------------------------------------------
+// 6. 表格美化
+// --------------------------------------------
+table {
+  border-radius: 8px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  th {
+    background: var(--lightgray);
+    font-weight: 600;
+  }
+
+  th, td {
+    padding: 0.75rem 1rem;
+  }
+
+  tr:hover td {
+    background: var(--highlight);
+  }
+}
+
+// --------------------------------------------
+// 7. Callout 优化
+// --------------------------------------------
+.callout {
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+// --------------------------------------------
+// 8. 侧边栏优化
+// --------------------------------------------
+.explorer {
+  .folder-title {
+    font-weight: 500;
+  }
+}
+
+// 关系图美化
+.graph {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+// --------------------------------------------
+// 9. 滚动条美化
+// --------------------------------------------
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--lightgray);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--darkgray);
+  }
+}
+
+// --------------------------------------------
+// 10. 响应式优化
+// --------------------------------------------
+@media (max-width: 800px) {
+  .homepage-hero {
+    padding: 2rem 1rem;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+  .homepage-cards {
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+}

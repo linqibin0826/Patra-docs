@@ -8,8 +8,8 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
+      GitHub: "https://github.com/linqibin0826/Patra-api",
+      "文档源码": "https://github.com/linqibin0826/Patra-docs",
     },
   }),
 }
@@ -35,15 +35,20 @@ export const defaultContentPageLayout: PageLayout = {
           grow: true,
         },
         { Component: Component.Darkmode() },
-        { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.DesktopOnly(
+      Component.Explorer({
+        title: "目录",
+        folderDefaultState: "collapsed",
+        folderClickBehavior: "collapse",
+      }),
+    ),
   ],
   right: [
-    Component.Graph(),
+    Component.DesktopOnly(Component.Graph()),
     Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
+    Component.DesktopOnly(Component.Backlinks()),
   ],
 }
 
@@ -62,7 +67,13 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.DesktopOnly(
+      Component.Explorer({
+        title: "目录",
+        folderDefaultState: "collapsed",
+        folderClickBehavior: "collapse",
+      }),
+    ),
   ],
   right: [],
 }

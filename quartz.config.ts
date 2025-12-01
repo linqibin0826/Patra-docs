@@ -21,32 +21,33 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "Noto Serif SC",      // 中文衬线标题
+        body: "Noto Sans SC",         // 中文无衬线正文
+        code: "JetBrains Mono",       // 代码字体
       },
       colors: {
+        // 温暖舒适风格 - 类似 Notion/Obsidian
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#faf9f6",           // 米白背景
+          lightgray: "#f0ebe3",       // 浅暖灰
+          gray: "#a8a29e",            // 中性暖灰
+          darkgray: "#44403c",        // 深暖灰（正文）
+          dark: "#292524",            // 深棕（标题）
+          secondary: "#b45309",       // 琥珀色（链接）
+          tertiary: "#78716c",        // 石灰色（悬停）
+          highlight: "rgba(180, 83, 9, 0.1)",
+          textHighlight: "#fef3c7",
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#1c1917",           // 深石墨
+          lightgray: "#292524",       // 深暖灰
+          gray: "#57534e",            // 中暖灰
+          darkgray: "#d6d3d1",        // 浅暖灰（正文）
+          dark: "#fafaf9",            // 米白（标题）
+          secondary: "#fbbf24",       // 金黄色（链接）
+          tertiary: "#a8a29e",        // 石灰色（悬停）
+          highlight: "rgba(251, 191, 36, 0.1)",
+          textHighlight: "#78350f",
         },
       },
     },
