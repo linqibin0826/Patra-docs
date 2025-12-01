@@ -54,8 +54,11 @@ jobs:
               # 清理之前的临时文件
               rm -f /tmp/d2_temp_*.d2
 
+              # 计算相对于 content 目录的路径，用于生成绝对 URL
+              relative_dir="${dir#content/}"
+
               # 使用 awk 提取 d2 代码块并生成替换后的文件
-              awk -v filebasename="$filebasename" '
+              awk -v filebasename="$filebasename" -v reldir="$relative_dir" '
                 BEGIN { in_d2 = 0; counter = 1; d2_content = "" }
                 /^```d2/ {
                   in_d2 = 1
@@ -69,9 +72,9 @@ jobs:
                   printf "%s", d2_content > d2_file
                   close(d2_file)
 
-                  # 输出图片引用
+                  # 输出图片引用（使用绝对路径）
                   svg_name = filebasename "-d2-" counter ".svg"
-                  print "![D2 Diagram](assets/" svg_name ")"
+                  print "![D2 Diagram](/" reldir "/assets/" svg_name ")"
                   counter++
                   next
                 }
