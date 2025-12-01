@@ -26,6 +26,91 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install D2
+        run: |
+          curl -fsSL https://d2lang.com/install.sh | sh -s --
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Compile D2 diagrams to SVG
+        run: |
+          # 创建编译脚本
+          cat << 'SCRIPT' > /tmp/compile-d2.sh
+          #!/bin/bash
+          set -e
+
+          # 遍历 content 目录下所有 .md 文件
+          find content -name "*.md" -type f | while read -r mdfile; do
+            dir=$(dirname "$mdfile")
+            basename=$(basename "$mdfile" .md)
+
+            # 检查文件是否包含 d2 代码块
+            if grep -q '```d2' "$mdfile"; then
+              echo "Processing: $mdfile"
+
+              # 创建 assets 目录
+              assets_dir="$dir/assets"
+              mkdir -p "$assets_dir"
+
+              # 提取并编译每个 d2 代码块
+              counter=1
+              temp_file=$(mktemp)
+              cp "$mdfile" "$temp_file"
+
+              # 使用 awk 处理 d2 代码块
+              awk -v dir="$dir" -v basename="$basename" -v assets="$assets_dir" '
+                BEGIN { in_d2 = 0; counter = 1; d2_content = "" }
+                /^```d2/ {
+                  in_d2 = 1
+                  d2_content = ""
+                  next
+                }
+                /^```$/ && in_d2 {
+                  in_d2 = 0
+                  # 保存 d2 内容到临时文件
+                  svg_name = basename "-d2-" counter ".svg"
+                  svg_path = assets "/" svg_name
+                  d2_file = "/tmp/d2_temp_" counter ".d2"
+                  print d2_content > d2_file
+                  close(d2_file)
+
+                  # 输出图片引用（相对路径）
+                  print "![D2 Diagram](assets/" svg_name ")"
+                  counter++
+                  next
+                }
+                in_d2 {
+                  d2_content = d2_content $0 "\n"
+                  next
+                }
+                { print }
+              ' "$temp_file" > "${mdfile}.tmp"
+
+              # 编译所有提取的 d2 文件
+              for d2file in /tmp/d2_temp_*.d2; do
+                if [ -f "$d2file" ]; then
+                  num=$(basename "$d2file" .d2 | sed 's/d2_temp_//')
+                  svg_name="${basename}-d2-${num}.svg"
+                  svg_path="$assets_dir/$svg_name"
+
+                  echo "  Compiling: $svg_path"
+                  d2 --theme 0 --layout elk "$d2file" "$svg_path" 2>/dev/null || \
+                  d2 --theme 0 "$d2file" "$svg_path"
+
+                  rm -f "$d2file"
+                fi
+              done
+
+              mv "${mdfile}.tmp" "$mdfile"
+              rm -f "$temp_file"
+            fi
+          done
+
+          echo "D2 compilation complete!"
+          SCRIPT
+
+          chmod +x /tmp/compile-d2.sh
+          /tmp/compile-d2.sh
+
       - name: Install Dependencies
         run: npm ci
 
