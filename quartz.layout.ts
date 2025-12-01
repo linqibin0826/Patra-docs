@@ -1,5 +1,50 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { FileTrieNode } from "./quartz/components/ExplorerNode"
+
+// Explorer 配置：过滤、映射、排序
+const explorerConfig = {
+  title: "目录",
+  folderDefaultState: "collapsed" as const,
+  folderClickBehavior: "collapse" as const,
+  // 过滤：隐藏 _MOC 索引文件（它们是文件夹的入口，不需要单独显示）
+  filterFn: (node: FileTrieNode) => {
+    return !node.name.startsWith("_")
+  },
+  // 映射：简化 ADR 文件名显示
+  mapFn: (node: FileTrieNode) => {
+    // ADR-001-xxx-yyy → ADR-001
+    if (node.name.match(/^ADR-\d{3}/)) {
+      node.displayName = node.name.replace(/^(ADR-\d{3})-.+$/, "$1")
+    }
+    // 文件夹名称中文化
+    const folderNames: Record<string, string> = {
+      "decisions": "📋 架构决策",
+      "designs": "🏗️ 设计文档",
+      "devlog": "📝 开发日志",
+      "learning": "📖 学习笔记",
+      "bugs": "🐛 Bug 记录",
+      "til": "💡 TIL",
+      "daily": "每日",
+      "weekly": "周报",
+      "monthly": "月报",
+      "observability": "可观测性",
+      "infrastructure": "基础设施",
+    }
+    if (node.isFolder && folderNames[node.name]) {
+      node.displayName = folderNames[node.name]
+    }
+    return node
+  },
+  // 排序：文件夹优先，然后按名称排序
+  sortFn: (a: FileTrieNode, b: FileTrieNode) => {
+    // 文件夹优先
+    if (a.isFolder && !b.isFolder) return -1
+    if (!a.isFolder && b.isFolder) return 1
+    // 同类型按名称排序
+    return a.name.localeCompare(b.name, "zh-CN")
+  },
+}
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -37,13 +82,7 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.DesktopOnly(
-      Component.Explorer({
-        title: "目录",
-        folderDefaultState: "collapsed",
-        folderClickBehavior: "collapse",
-      }),
-    ),
+    Component.DesktopOnly(Component.Explorer(explorerConfig)),
   ],
   right: [
     Component.DesktopOnly(Component.Graph()),
@@ -67,13 +106,7 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.DesktopOnly(
-      Component.Explorer({
-        title: "目录",
-        folderDefaultState: "collapsed",
-        folderClickBehavior: "collapse",
-      }),
-    ),
+    Component.DesktopOnly(Component.Explorer(explorerConfig)),
   ],
   right: [],
 }

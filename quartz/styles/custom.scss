@@ -175,11 +175,73 @@ table {
 }
 
 // --------------------------------------------
-// 8. 侧边栏优化
+// 8. 侧边栏 Explorer 优化
 // --------------------------------------------
 .explorer {
+  // 目录标题
+  & > #explorer-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--darkgray);
+    margin-bottom: 0.5rem;
+  }
+
+  // 文件夹样式
+  .folder-outer {
+    margin: 0.25rem 0;
+  }
+
   .folder-title {
     font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: var(--lightgray);
+    }
+  }
+
+  // 文件夹图标
+  .folder-icon {
+    color: var(--secondary);
+    margin-right: 0.35rem;
+  }
+
+  // 文件列表
+  ul.folder-outer > ul {
+    padding-left: 0.75rem;
+    margin-left: 0.5rem;
+    border-left: 1px solid var(--lightgray);
+  }
+
+  // 文件项
+  li > a {
+    display: block;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.85rem;
+    color: var(--darkgray);
+    border-radius: 4px;
+    transition: all 0.15s ease;
+    text-decoration: none;
+
+    &:hover {
+      background: var(--lightgray);
+      color: var(--secondary);
+    }
+  }
+
+  // 当前页面高亮
+  li > a.active {
+    background: var(--highlight);
+    color: var(--secondary);
+    font-weight: 500;
+  }
+
+  // 收起状态的文件夹
+  .folder-outer.collapsed > ul {
+    display: none;
   }
 }
 
