@@ -9,13 +9,16 @@ const explorerConfig = {
   folderClickBehavior: "collapse" as const,
   // 过滤：隐藏 _MOC 索引文件（它们是文件夹的入口，不需要单独显示）
   filterFn: (node: FileTrieNode) => {
+    // 空值保护：node.name 可能为 undefined
+    if (!node.name) return true
     return !node.name.startsWith("_")
   },
   // 映射：简化 ADR 文件名显示
   mapFn: (node: FileTrieNode) => {
+    const name = node.name ?? ""
     // ADR-001-xxx-yyy → ADR-001
-    if (node.name.match(/^ADR-\d{3}/)) {
-      node.displayName = node.name.replace(/^(ADR-\d{3})-.+$/, "$1")
+    if (name.match(/^ADR-\d{3}/)) {
+      node.displayName = name.replace(/^(ADR-\d{3})-.+$/, "$1")
     }
     // 文件夹名称中文化
     const folderNames: Record<string, string> = {
@@ -31,8 +34,8 @@ const explorerConfig = {
       "observability": "可观测性",
       "infrastructure": "基础设施",
     }
-    if (node.isFolder && folderNames[node.name]) {
-      node.displayName = folderNames[node.name]
+    if (node.isFolder && folderNames[name]) {
+      node.displayName = folderNames[name]
     }
     return node
   },
@@ -41,8 +44,10 @@ const explorerConfig = {
     // 文件夹优先
     if (a.isFolder && !b.isFolder) return -1
     if (!a.isFolder && b.isFolder) return 1
-    // 同类型按名称排序
-    return a.name.localeCompare(b.name, "zh-CN")
+    // 同类型按名称排序（空值保护）
+    const nameA = a.name ?? ""
+    const nameB = b.name ?? ""
+    return nameA.localeCompare(nameB, "zh-CN")
   },
 }
 
