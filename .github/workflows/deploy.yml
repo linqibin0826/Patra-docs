@@ -33,31 +33,29 @@ jobs:
 
       - name: Compile D2 diagrams to SVG
         run: |
-          # 创建编译脚本
-          cat << 'SCRIPT' > /tmp/compile-d2.sh
-          #!/bin/bash
+          # D2 编译脚本 - 支持 ```d2 和 ```d2 width=xxx 等格式
           set -e
+
+          echo "=== Starting D2 compilation ==="
 
           # 遍历 content 目录下所有 .md 文件
           find content -name "*.md" -type f | while read -r mdfile; do
             dir=$(dirname "$mdfile")
-            basename=$(basename "$mdfile" .md)
+            filebasename=$(basename "$mdfile" .md)
 
-            # 检查文件是否包含 d2 代码块
-            if grep -q '```d2' "$mdfile"; then
+            # 检查文件是否包含 d2 代码块（支持带参数的格式如 ```d2 width=800）
+            if grep -qE '```d2' "$mdfile"; then
               echo "Processing: $mdfile"
 
               # 创建 assets 目录
               assets_dir="$dir/assets"
               mkdir -p "$assets_dir"
 
-              # 提取并编译每个 d2 代码块
-              counter=1
-              temp_file=$(mktemp)
-              cp "$mdfile" "$temp_file"
+              # 清理之前的临时文件
+              rm -f /tmp/d2_temp_*.d2
 
-              # 使用 awk 处理 d2 代码块
-              awk -v dir="$dir" -v basename="$basename" -v assets="$assets_dir" '
+              # 使用 awk 提取 d2 代码块并生成替换后的文件
+              awk -v filebasename="$filebasename" '
                 BEGIN { in_d2 = 0; counter = 1; d2_content = "" }
                 /^```d2/ {
                   in_d2 = 1
@@ -67,13 +65,12 @@ jobs:
                 /^```$/ && in_d2 {
                   in_d2 = 0
                   # 保存 d2 内容到临时文件
-                  svg_name = basename "-d2-" counter ".svg"
-                  svg_path = assets "/" svg_name
                   d2_file = "/tmp/d2_temp_" counter ".d2"
-                  print d2_content > d2_file
+                  printf "%s", d2_content > d2_file
                   close(d2_file)
 
-                  # 输出图片引用（相对路径）
+                  # 输出图片引用
+                  svg_name = filebasename "-d2-" counter ".svg"
                   print "![D2 Diagram](assets/" svg_name ")"
                   counter++
                   next
@@ -83,33 +80,48 @@ jobs:
                   next
                 }
                 { print }
-              ' "$temp_file" > "${mdfile}.tmp"
+              ' "$mdfile" > "${mdfile}.tmp"
 
               # 编译所有提取的 d2 文件
+              compiled=0
               for d2file in /tmp/d2_temp_*.d2; do
                 if [ -f "$d2file" ]; then
                   num=$(basename "$d2file" .d2 | sed 's/d2_temp_//')
-                  svg_name="${basename}-d2-${num}.svg"
+                  svg_name="${filebasename}-d2-${num}.svg"
                   svg_path="$assets_dir/$svg_name"
 
-                  echo "  Compiling: $svg_path"
-                  d2 --theme 0 --layout elk "$d2file" "$svg_path" 2>/dev/null || \
-                  d2 --theme 0 "$d2file" "$svg_path"
+                  echo "  Compiling D2 block $num -> $svg_path"
 
+                  # 尝试使用 elk 布局，失败则回退到默认布局
+                  if d2 --theme 0 --layout elk "$d2file" "$svg_path" 2>/dev/null; then
+                    echo "    ✓ Compiled with elk layout"
+                  elif d2 --theme 0 "$d2file" "$svg_path" 2>/dev/null; then
+                    echo "    ✓ Compiled with default layout"
+                  else
+                    echo "    ✗ Failed to compile, keeping original code block"
+                    # 编译失败时不替换原文件
+                    rm -f "${mdfile}.tmp"
+                    break
+                  fi
+
+                  compiled=1
                   rm -f "$d2file"
                 fi
               done
 
-              mv "${mdfile}.tmp" "$mdfile"
-              rm -f "$temp_file"
+              # 只有编译成功才替换原文件
+              if [ -f "${mdfile}.tmp" ]; then
+                mv "${mdfile}.tmp" "$mdfile"
+                echo "  ✓ Updated: $mdfile"
+              fi
             fi
           done
 
-          echo "D2 compilation complete!"
-          SCRIPT
+          echo "=== D2 compilation complete ==="
 
-          chmod +x /tmp/compile-d2.sh
-          /tmp/compile-d2.sh
+          # 显示生成的 SVG 文件
+          echo "Generated SVG files:"
+          find content -name "*.svg" -type f 2>/dev/null || echo "  (none)"
 
       - name: Install Dependencies
         run: npm ci
