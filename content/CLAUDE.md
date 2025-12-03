@@ -2,6 +2,8 @@
 
 本目录是项目的知识管理中心，使用 Obsidian 管理。
 
+当前用户正在学习 React, 你需要 遵守 @content/learning/react/CLAUDE.md
+
 ## 目录结构
 
 | 目录 | 用途 | 触发时机 |
