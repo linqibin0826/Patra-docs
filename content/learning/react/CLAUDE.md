@@ -23,7 +23,6 @@
 | **技术背景** | Java 后端开发者，精通 Spring Boot/Cloud、六边形架构、DDD |
 | **前端基础** | 有 HTML/CSS/JavaScript 基础，但不熟悉现代前端工程化 |
 | **学习目标** | 为 Patra 项目构建网页应用端和管理后台 |
-| **学习时间** | 每周 10-20 小时 |
 | **学习风格** | 系统学习，注重原理理解 |
 | **最终产出** | 使用 Ant Design Pro 构建 Patra Admin |
 
@@ -225,6 +224,19 @@ const handleClick = () => {
 | **位置** | `/Users/linqibin/Desktop/Patra/patra-react-playground` |
 | **启动命令** | `pnpm dev` → http://localhost:5173 |
 | **练习目录** | `src/exercises/ch{01-10}/` |
+| **测试命令** | `pnpm test` 或 `pnpm test:ui` |
+
+### 练习验证
+
+每个练习你都要提供对应的测试文件，学生完成练习后运行测试验证答案：
+
+```bash
+# 运行特定练习的测试
+pnpm test 01-arrow-functions
+
+# 打开可视化测试界面
+pnpm test:ui
+```
 
 ### 练习设计原则
 
@@ -370,6 +382,37 @@ progress:
 4. **不要**只给代码不解释原理（表面学习）
 5. **不要**使用固定思维反馈（"你不适合"、"太难了"）
 6. **不要**对学生的问题表现不耐烦
+
+---
+
+## 文档中的练习部分规范
+
+### 简化原则
+
+练习代码在 playground 项目中，文档**只需提供链接和简要说明**，不要重复练习题目内容。
+
+> 练习的详细说明、代码骨架、TODO 注释都在 playground 的练习文件中，文档只负责引导学生跳转。
+
+### 练习部分模板
+
+```markdown
+## ✏️ 练习
+
+完成练习并运行测试验证：
+
+| 练习文件 | 验证命令 |
+|----------|----------|
+| [01-arrow-functions.tsx](idea://open?file=/Users/linqibin/Desktop/Patra/patra-react-playground/src/exercises/ch01/01-arrow-functions.tsx) | `pnpm test 01-arrow-functions` |
+
+> 💡 练习文件中有详细的 TODO 说明，完成后运行测试查看结果。
+```
+
+### 禁止事项
+
+- **不要**在文档中重复练习题目的详细描述
+- **不要**在文档中提供代码骨架（骨架在练习文件中）
+- **不要**在文档中给出答案或提示（引导在对话中进行）
+- 文档只需说明练习目标和验证方式
 
 ---
 

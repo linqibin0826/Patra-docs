@@ -25,8 +25,8 @@ tags:
 |---|------|------|---------|
 | 00 | [[ch01-javascript-modern/00-overview\|概述]] | 🔄 进行中 | - |
 | 01 | [[ch01-javascript-modern/01-arrow-functions\|箭头函数]] | 🔄 进行中 | 熟悉 |
-| 02 | [[ch01-javascript-modern/02-destructuring\|解构赋值]] | ⏳ 未开始 | - |
-| 03 | [[ch01-javascript-modern/03-spread-operator\|展开运算符]] | ⏳ 未开始 | - |
+| 02 | [[ch01-javascript-modern/02-destructuring\|解构赋值]] | ✅ 已完成 | 熟悉 |
+| 03 | [[ch01-javascript-modern/03-spread-operator\|展开运算符]] | ✅ 已完成 | 熟悉 |
 | 04 | [[ch01-javascript-modern/04-template-literals\|模板字符串]] | ⏳ 未开始 | - |
 | 05 | [[ch01-javascript-modern/05-async-await\|async/await]] | ⏳ 未开始 | - |
 | 06 | [[ch01-javascript-modern/06-modules\|ES6 模块化]] | ⏳ 未开始 | - |
@@ -34,7 +34,7 @@ tags:
 | 08 | [[ch01-javascript-modern/08-optional-chaining\|可选链和空值合并]] | ⏳ 未开始 | - |
 | 99 | [[ch01-javascript-modern/99-summary\|章节总结]] | ⏳ 未开始 | - |
 
-**章节进度**：1 / 10 节
+**章节进度**：3 / 10 节
 
 ---
 

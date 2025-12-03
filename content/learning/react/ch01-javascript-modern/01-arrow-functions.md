@@ -5,7 +5,7 @@ section: 01
 status: 进行中
 progress:
   started_at: 2025-12-02
-  completed_at: null
+  completed_at: 2025-12-02
   mastery: 熟悉
 tags:
   - learning/react/ch01
@@ -171,46 +171,13 @@ class Button {
 
 ## ✏️ 练习
 
-练习代码：[01-arrow-functions.tsx](idea://open?file=/Users/linqibin/Desktop/Patra/patra-react-playground/src/exercises/ch01/01-arrow-functions.tsx)
+完成练习并运行测试验证：
 
-### 练习 1：改写为箭头函数
+| 练习文件 | 验证命令 |
+|----------|----------|
+| [01-arrow-functions.tsx](idea://open?file=/Users/linqibin/Desktop/Patra/patra-react-playground/src/exercises/ch01/01-arrow-functions.tsx) | `pnpm test 01-arrow-functions` |
 
-将以下普通函数改写为箭头函数的最简形式：
-
-```javascript
-// 改写这些函数
-function double(n) {
-  return n * 2;
-}
-
-function greet(name) {
-  return "Hello, " + name;
-}
-
-function sum(a, b, c) {
-  return a + b + c;
-}
-```
-
-### 练习 2：预测输出
-
-```javascript
-const counter = {
-  count: 0,
-
-  increment: function() {
-    setTimeout(function() {
-      this.count++;
-      console.log(this.count);
-    }, 100);
-  }
-};
-
-counter.increment();
-```
-
-1. 这段代码会输出什么？
-2. 如何修复这个问题？
+> 💡 练习文件中有详细的 TODO 说明，完成后运行测试查看结果。
 
 ---
 
