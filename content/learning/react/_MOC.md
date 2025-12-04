@@ -30,11 +30,11 @@ tags:
 | 04 | [[ch01-javascript-modern/04-template-literals\|模板字符串]] | ✅ 已完成 | 熟悉 |
 | 05 | [[ch01-javascript-modern/05-async-await\|async/await]] | ✅ 已完成 | 熟悉 |
 | 06 | [[ch01-javascript-modern/06-modules\|ES6 模块化]] | ✅ 已完成 | 熟悉 |
-| 07 | [[ch01-javascript-modern/07-array-methods\|数组高阶方法]] | ⏳ 未开始 | - |
+| 07 | [[ch01-javascript-modern/07-array-methods\|数组高阶方法]] | ✅ 已完成 | 熟悉 |
 | 08 | [[ch01-javascript-modern/08-optional-chaining\|可选链和空值合并]] | ⏳ 未开始 | - |
 | 99 | [[ch01-javascript-modern/99-summary\|章节总结]] | ⏳ 未开始 | - |
 
-**章节进度**：6 / 10 节
+**章节进度**：8 / 10 节
 
 ---
 
