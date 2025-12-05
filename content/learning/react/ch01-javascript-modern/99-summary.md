@@ -3,109 +3,274 @@ title: 第 1 章总结
 chapter: 01
 section: 99
 type: chapter-summary
-status: 未开始
+status: 已完成
 progress:
-  started_at: null
-  completed_at: null
-  mastery: null
+  started_at: 2025-12-04
+  completed_at: 2025-12-04
+  mastery: 熟悉
 tags:
   - learning/react/ch01
   - tech/javascript
   - tech/es6
 ---
 
-# 第 1 章总结
+# 第 1 章总结：JavaScript 现代化
 
-> 回顾 JavaScript 现代化特性，巩固 React 开发基础
-
----
-
-## 🎯 核心要点回顾
-
-### 箭头函数
-
-- 简洁的函数语法：`(a, b) => a + b`
-- `this` 由定义位置决定，不由调用方式决定
-- 适合用作回调函数和事件处理器
-
-### 解构赋值
-
-- 对象解构：`const { name, age } = user`
-- 数组解构：`const [first, second] = array`
-- React 中：Props 解构、useState 返回值解构
-
-### 展开运算符
-
-- 数组展开：`[...arr1, ...arr2]`
-- 对象展开：`{ ...obj1, ...obj2 }`
-- React 状态不可变更新的核心
-
-### 模板字符串
-
-- 反引号语法：`` `Hello, ${name}!` ``
-- 支持多行字符串
-
-### async/await
-
-- 用同步写法处理异步：`const data = await fetchData()`
-- 错误处理：try/catch
-
-### ES6 模块化
-
-- 导出：`export` / `export default`
-- 导入：`import { xxx } from` / `import xxx from`
-
-### 数组高阶方法
-
-- `map`：转换数组
-- `filter`：过滤数组
-- `reduce`：聚合数组
-- React 列表渲染的核心
-
-### 可选链和空值合并
-
-- 可选链：`obj?.prop?.nested`
-- 空值合并：`value ?? defaultValue`
+> 本章覆盖了 React 开发中最常用的 ES6+ 语法特性，为后续学习打下坚实基础。
 
 ---
 
-## 📝 综合练习
+## 📋 知识地图
 
-### 练习 1：数据处理
-
-给定以下用户数据，完成要求的操作：
-
-```javascript
-const users = [
-  { id: 1, name: "Alice", age: 25, active: true },
-  { id: 2, name: "Bob", age: 30, active: false },
-  { id: 3, name: "Charlie", age: 28, active: true },
-  { id: 4, name: "Diana", age: 22, active: true }
-];
 ```
-
-1. 筛选出活跃用户
-2. 提取活跃用户的名字
-3. 计算活跃用户的平均年龄
-
-### 练习 2：模拟 React 组件
-
-使用本章学到的所有特性，编写一个模拟的用户列表组件：
-
-```javascript
-// 要求：
-// 1. 使用解构获取 props
-// 2. 使用 async/await 获取用户数据
-// 3. 使用 map 渲染用户列表
-// 4. 使用可选链安全访问用户属性
-// 5. 使用箭头函数处理点击事件
+JavaScript 现代化
+├── 语法糖
+│   ├── 01 箭头函数      → this 词法绑定、简洁语法
+│   ├── 02 解构赋值      → 对象/数组解构、默认值、重命名
+│   ├── 03 展开运算符    → 复制、合并、剩余参数
+│   └── 04 模板字符串    → 插值、多行、标签模板
+│
+├── 异步编程
+│   └── 05 async/await   → Promise 语法糖、try/catch 错误处理
+│
+├── 模块化
+│   └── 06 ES6 模块      → import/export、命名导出 vs 默认导出
+│
+└── 数据处理
+    ├── 07 数组高阶方法  → map/filter/reduce、链式调用
+    └── 08 可选链        → ?.、??、安全访问嵌套属性
 ```
 
 ---
 
-## 🧪 章节测验
+## 🎯 核心概念速查
 
-### Q1: 综合题
+### 1. 箭头函数
+
+```javascript
+// 语法简洁
+const add = (a, b) => a + b;
+
+// this 词法绑定（不会丢失）
+const obj = {
+  name: "张三",
+  greet: function() {
+    setTimeout(() => {
+      console.log(this.name);  // ✅ "张三"
+    }, 100);
+  }
+};
+```
+
+**要点**：箭头函数没有自己的 `this`，向外层作用域查找。
+
+---
+
+### 2. 解构赋值
+
+```javascript
+// 对象解构
+const { name, age = 18 } = user;
+
+// 数组解构
+const [first, ...rest] = items;
+
+// 重命名
+const { name: userName } = user;
+```
+
+**要点**：默认值只在 `undefined` 时生效，`null` 不会触发。
+
+---
+
+### 3. 展开运算符
+
+```javascript
+// 复制数组/对象（浅拷贝）
+const newArr = [...arr];
+const newObj = { ...obj };
+
+// 合并
+const merged = { ...defaults, ...userSettings };
+
+// 剩余参数
+function sum(...numbers) {
+  return numbers.reduce((a, b) => a + b, 0);
+}
+```
+
+**要点**：展开是浅拷贝，嵌套对象需要逐层展开。
+
+---
+
+### 4. 模板字符串
+
+```javascript
+// 插值
+const msg = `Hello, ${name}!`;
+
+// 多行
+const html = `
+  <div>
+    <h1>${title}</h1>
+  </div>
+`;
+
+// 表达式
+const price = `总价：${qty * unitPrice} 元`;
+```
+
+**要点**：`${}` 内可以是任何 JavaScript 表达式。
+
+---
+
+### 5. async/await
+
+```javascript
+async function fetchUser(id) {
+  try {
+    const response = await fetch(`/api/users/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("请求失败:", error);
+    throw error;
+  }
+}
+```
+
+**要点**：`await` 只能在 `async` 函数中使用，用 `try/catch` 捕获错误。
+
+---
+
+### 6. ES6 模块化
+
+```javascript
+// 命名导出（可多个）
+export const foo = 1;
+export function bar() {}
+
+// 默认导出（只能一个）
+export default class User {}
+
+// 导入
+import User from './User';           // 默认导出，名字任意
+import { foo, bar } from './utils';  // 命名导出，名字必须匹配
+```
+
+**要点**：默认导出导入时可任意命名，命名导出必须用 `{}`。
+
+---
+
+### 7. 数组高阶方法
+
+```javascript
+// map - 一对一转换
+const names = users.map(u => u.name);
+
+// filter - 筛选
+const adults = users.filter(u => u.age >= 18);
+
+// reduce - 聚合
+const total = prices.reduce((sum, p) => sum + p, 0);
+
+// 链式调用
+const result = users
+  .filter(u => u.active)
+  .map(u => u.name)
+  .sort();
+```
+
+**口诀**：
+- `map`：转换 🍎🍊🍋 → 🧃🧃🧃
+- `filter`：筛选 🍎🍊🍋 → 🍎
+- `reduce`：聚合 🍎🍊🍋 → 🥗
+
+---
+
+### 8. 可选链和空值合并
+
+```javascript
+// 安全访问嵌套属性
+const city = user?.address?.city;
+
+// 安全调用方法
+const result = obj.method?.();
+
+// 安全访问数组
+const first = arr?.[0];
+
+// 提供默认值（只针对 null/undefined）
+const name = user?.name ?? "匿名";
+```
+
+**要点**：
+- `?.` 只保护左边那一个位置
+- `??` 只对 `null`/`undefined` 生效
+- `||` 对所有 falsy 值生效
+
+---
+
+## 📊 运算符对比表
+
+| 运算符 | 名称 | 触发条件 | 常见用途 |
+|--------|------|----------|----------|
+| `\|\|` | 逻辑或 | 左边是 falsy | 旧式默认值 |
+| `??` | 空值合并 | 左边是 null/undefined | 精确默认值 |
+| `?.` | 可选链 | 左边是 null/undefined | 安全访问 |
+| `&&` | 逻辑与 | 左边是 truthy 才继续 | 条件执行 |
+| `...` | 展开/剩余 | - | 复制、合并、收集 |
+
+---
+
+## ⚠️ 常见陷阱
+
+### 1. 解构默认值 vs `??`
+
+```javascript
+// 解构默认值：只对 undefined 生效
+const { value = 0 } = { value: null };  // value = null ❌
+
+// ??：对 null 和 undefined 都生效
+const value = input ?? 0;  // null → 0 ✅
+```
+
+### 2. 浅拷贝陷阱
+
+```javascript
+const user = { address: { city: "北京" } };
+const copy = { ...user };
+copy.address.city = "上海";  // ❌ 原对象也被修改了！
+
+// 正确做法
+const copy = { ...user, address: { ...user.address } };
+```
+
+### 3. `?.` 作用范围
+
+```javascript
+// ❌ 只保护了 user，后面的 .city 没保护
+user?.address.city  // 如果 address 是 undefined 会报错
+
+// ✅ 每一层都要保护
+user?.address?.city
+```
+
+### 4. map 中修改原对象
+
+```javascript
+// ❌ 危险：直接修改原对象
+users.map(u => { u.age++; return u; });
+
+// ✅ 安全：返回新对象
+users.map(u => ({ ...u, age: u.age + 1 }));
+```
+
+---
+
+## 🧪 综合测验
+
+### Q1: 综合应用
 
 ```javascript
 const data = {
@@ -122,29 +287,75 @@ const result = data.users
 console.log(result);
 ```
 
-输出是什么？
-
 > [!success]- 查看答案
 > **答案：`["Alice - Beijing"]`**
 >
-> - `filter` 使用可选链 `u.profile?.city`，Bob 的 profile 是 null，所以 `null?.city` 返回 undefined，被过滤掉
+> - `filter` 使用可选链 `u.profile?.city`，Bob 的 profile 是 null，`null?.city` 返回 undefined（falsy），被过滤掉
 > - `map` 只处理 Alice，使用模板字符串拼接
+
+### Q2: 默认值陷阱
+
+```javascript
+const config = { timeout: 0, retries: null };
+const timeout = config.timeout || 5000;
+const retries = config.retries ?? 3;
+
+console.log(timeout, retries);
+```
+
+> [!success]- 查看答案
+> **答案：`5000, 3`**
+>
+> - `timeout`：0 是 falsy，`||` 会用默认值 5000
+> - `retries`：null 触发 `??`，使用默认值 3
+
+---
+
+## 🔗 在 React 中的应用预告
+
+| 特性 | React 应用场景 |
+|------|----------------|
+| 箭头函数 | 事件处理、回调函数 |
+| 解构赋值 | Props 解构、useState 返回值 |
+| 展开运算符 | 状态更新、Props 传递 |
+| 模板字符串 | 动态类名、样式 |
+| async/await | 数据获取、API 调用 |
+| ES6 模块 | 组件导入导出 |
+| 数组方法 | 列表渲染（map）、条件过滤 |
+| 可选链 | 安全访问 props、API 响应 |
 
 ---
 
 ## ✅ 完成检查清单
 
-- [ ] 所有 8 节内容学习完成
-- [ ] 每节练习完成
-- [ ] 每节测验正确率 > 80%
-- [ ] 综合练习完成
+- [x] 01 箭头函数 - this 绑定理解清晰
+- [x] 02 解构赋值 - 注意默认值只对 undefined 生效
+- [x] 03 展开运算符 - 浅拷贝理解到位
+- [x] 04 模板字符串 - 标签模板后续再深入
+- [x] 05 async/await - try/catch 错误处理
+- [x] 06 ES6 模块化 - default 导入可任意命名
+- [x] 07 数组高阶方法 - map/filter/reduce 场景清晰
+- [x] 08 可选链 - ?? vs || 区别明确
+- [x] 99 章节总结 - 回顾测验全部通过
 
 ---
 
-## 🔗 下一步
+## 🚀 下一步
 
-恭喜完成第 1 章！
+**第 2 章：React 基础概念**
 
-你已经掌握了 React 开发所需的 JavaScript 基础。接下来，我们将正式进入 React 的世界！
+你将学习：
+- JSX 语法与原理
+- 组件化思想
+- Props 与组件通信
+- 条件渲染与列表渲染
+- 事件处理
 
-→ [[../ch02-react-basics/00-overview|第 2 章：React 基础概念]]
+带着这些扎实的 JavaScript 基础，React 学起来会轻松很多！
+
+---
+
+## 🔗 导航
+
+- 上一节：[[08-optional-chaining|可选链和空值合并]]
+- 下一章：[[../ch02-react-basics/00-overview|React 基础概念]]

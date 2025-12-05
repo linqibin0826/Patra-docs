@@ -88,21 +88,30 @@ public class VenueAggregate extends BaseAggregateRoot<Long> {
 }
 ```
 
-### 4. Repository DTO 模式
+### 4. Repository 接口设计
 
-Repository 接口使用内部 Record 类型传递数据，避免领域对象与持久化耦合：
+Repository 接口以聚合根为操作单位，保持 DDD 一致性边界：
 
 ```java
 public interface VenueRepository {
-    record VenueData(Long id, String venueType, ...);
-    record VenueIdentifierData(Long id, Long venueId, String identifierType, String identifierValue, Boolean isPrimary);
-    record VenueMetricsData(Long id, Long venueId, int year, Integer worksCount, Integer citedByCount, Integer oaWorksCount);
+    /// 检查是否存在任何 Venue 数据（用于一次性初始化检查）。
+    boolean hasAnyData();
 
-    VenueData save(VenueData venue);
-    void saveIdentifiers(List<VenueIdentifierData> identifiers);
-    void saveMetrics(List<VenueMetricsData> metrics);
+    /// 批量插入 Venue 聚合根（包含标识符和年度指标子实体）。
+    void insertAll(List<VenueAggregate> aggregates);
 }
 ```
+
+**设计演进说明**（2025-12-05）：
+
+原设计使用内部 Record DTO 模式（`VenueData`、`VenueIdentifierData`、`VenueMetricsData`）分离领域对象与持久化。
+在实际使用中发现该模式过度设计，增加了不必要的复杂度：
+
+1. **DTO 转换冗余**：Aggregate → DTO → DO 的双重转换
+2. **职责分散**：主表和子表的保存逻辑分散在调用方
+3. **一致性风险**：调用方需要协调多个保存方法的调用顺序
+
+重构后采用聚合根级别操作，由 Repository 实现内部处理子表持久化，符合 DDD 聚合一致性边界原则。
 
 ## 后果
 
