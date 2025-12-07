@@ -74,6 +74,36 @@ XmlParserAdapter 原有 ~1800 行代码，包含 5 种 MeSH 记录类型的解�
 - Java 单继承限制灵活性
 - 策略间组合困难
 
+## 后续演进
+
+> 更新于 2025-12-06
+
+本 ADR 描述的「门面 + 策略」架构已进一步演进为「专用端口 + 专用适配器」模式：
+
+### 演进内容
+
+1. **删除 XmlParserPort/XmlParserAdapter 通用接口**
+   - 原因：不同调用方（MeshImportOrchestrator、MeshDescriptorItemReader）使用不同的解析逻辑，通用接口违反接口隔离原则
+
+2. **拆分为专用端口**
+   - `MeshDescriptorParserPort` + `MeshDescriptorParserAdapter`：主题词解析，由 Spring Batch ItemReader 使用
+   - `MeshQualifierParserPort` + `MeshQualifierParserAdapter`：限定词解析，由 MeshImportOrchestrator 直接使用
+
+3. **删除死代码**
+   - `ConceptParsingStrategy`：从未被外部调用，概念解析已内联到 DescriptorParsingStrategy
+   - `TreeNumberParsingStrategy`：从未被外部调用，树形编号解析已内联
+
+4. **保留的策略类**
+   - `DescriptorParsingStrategy`：主题词解析核心逻辑
+   - `QualifierParsingStrategy`：限定词解析核心逻辑
+   - `EntryTermParsingStrategy`：入口词解析，被 DescriptorParsingStrategy 内部复用
+
+### 演进收益
+
+- 每个端口职责单一，易于理解和测试
+- 消除了门面类的策略选择逻辑
+- 参数类型统一为 `Path`，消除了 `InputStream` vs `Path` 的不一致
+
 ## 参考资料
 
 - [Strategy Pattern - Refactoring Guru](https://refactoring.guru/design-patterns/strategy)

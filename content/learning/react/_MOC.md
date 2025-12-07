@@ -21,18 +21,18 @@ tags:
 
 ### 第 1 章：JavaScript 现代化
 
-| 节 | 标题 | 状态 | 掌握程度 |
-|---|------|------|---------|
-| 00 | [[ch01-javascript-modern/00-overview\|概述]] | 🔄 进行中 | - |
-| 01 | [[ch01-javascript-modern/01-arrow-functions\|箭头函数]] | 🔄 进行中 | 熟悉 |
-| 02 | [[ch01-javascript-modern/02-destructuring\|解构赋值]] | ✅ 已完成 | 熟悉 |
-| 03 | [[ch01-javascript-modern/03-spread-operator\|展开运算符]] | ✅ 已完成 | 熟悉 |
-| 04 | [[ch01-javascript-modern/04-template-literals\|模板字符串]] | ✅ 已完成 | 熟悉 |
-| 05 | [[ch01-javascript-modern/05-async-await\|async/await]] | ✅ 已完成 | 熟悉 |
-| 06 | [[ch01-javascript-modern/06-modules\|ES6 模块化]] | ✅ 已完成 | 熟悉 |
-| 07 | [[ch01-javascript-modern/07-array-methods\|数组高阶方法]] | ✅ 已完成 | 熟悉 |
-| 08 | [[ch01-javascript-modern/08-optional-chaining\|可选链和空值合并]] | ✅ 已完成 | 熟悉 |
-| 99 | [[ch01-javascript-modern/99-summary\|章节总结]] | ✅ 已完成 | 熟悉 |
+| 节   | 标题                                                        | 状态    | 掌握程度 |
+| --- | --------------------------------------------------------- | ----- | ---- |
+| 00  | [[ch01-javascript-modern/00-overview\|概述]]                | ✅ 已完成 | -    |
+| 01  | [[ch01-javascript-modern/01-arrow-functions\|箭头函数]]       | ✅ 已完成 | 熟悉   |
+| 02  | [[ch01-javascript-modern/02-destructuring\|解构赋值]]         | ✅ 已完成 | 熟悉   |
+| 03  | [[ch01-javascript-modern/03-spread-operator\|展开运算符]]      | ✅ 已完成 | 熟悉   |
+| 04  | [[ch01-javascript-modern/04-template-literals\|模板字符串]]    | ✅ 已完成 | 熟悉   |
+| 05  | [[ch01-javascript-modern/05-async-await\|async/await]]    | ✅ 已完成 | 熟悉   |
+| 06  | [[ch01-javascript-modern/06-modules\|ES6 模块化]]            | ✅ 已完成 | 熟悉   |
+| 07  | [[ch01-javascript-modern/07-array-methods\|数组高阶方法]]       | ✅ 已完成 | 熟悉   |
+| 08  | [[ch01-javascript-modern/08-optional-chaining\|可选链和空值合并]] | ✅ 已完成 | 熟悉   |
+| 99  | [[ch01-javascript-modern/99-summary\|章节总结]]               | ✅ 已完成 | 熟悉   |
 
 **章节进度**：10 / 10 节 ✅ 已完成
 
@@ -40,22 +40,22 @@ tags:
 
 ### 第 2 章：React 基础概念
 
-| 节 | 标题 | 状态 | 掌握程度 |
-|---|------|------|---------|
-| 00 | [[ch02-react-basics/00-overview\|概述]] | 🔄 进行中 | - |
-| 01 | [[ch02-react-basics/01-what-is-react\|React 是什么]] | ✅ 已完成 | 掌握 |
-| 02 | [[ch02-react-basics/02-jsx-syntax\|JSX 语法]] | ✅ 已完成 | 掌握 |
-| 03 | [[ch02-react-basics/03-function-components\|函数组件]] | ✅ 已完成 | 掌握 |
-| 04 | [[ch02-react-basics/04-props\|Props 属性传递]] | ✅ 已完成 | 掌握 |
-| 05 | [[ch02-react-basics/05-state-usestate\|State 状态管理]] | ✅ 已完成 | 熟悉 |
-| 06 | [[ch02-react-basics/06-event-handling\|事件处理]] | ⏳ 未开始 | - |
-| 07 | [[ch02-react-basics/07-conditional-rendering\|条件渲染]] | ⏳ 未开始 | - |
-| 08 | [[ch02-react-basics/08-list-rendering\|列表渲染与 key]] | ⏳ 未开始 | - |
-| 09 | [[ch02-react-basics/09-form-handling\|表单处理]] | ⏳ 未开始 | - |
-| 10 | [[ch02-react-basics/10-component-composition\|组件组合与拆分]] | ⏳ 未开始 | - |
-| 99 | [[ch02-react-basics/99-summary\|章节总结]] | ⏳ 未开始 | - |
+| 节   | 标题                                                      | 状态    | 掌握程度 |
+| --- | ------------------------------------------------------- | ----- | ---- |
+| 00  | [[ch02-react-basics/00-overview\|概述]]                   | ✅ 已完成 | -    |
+| 01  | [[ch02-react-basics/01-what-is-react\|React 是什么]]       | ✅ 已完成 | 掌握   |
+| 02  | [[ch02-react-basics/02-jsx-syntax\|JSX 语法]]             | ✅ 已完成 | 掌握   |
+| 03  | [[ch02-react-basics/03-function-components\|函数组件]]      | ✅ 已完成 | 掌握   |
+| 04  | [[ch02-react-basics/04-props\|Props 属性传递]]              | ✅ 已完成 | 掌握   |
+| 05  | [[ch02-react-basics/05-state-usestate\|State 状态管理]]     | ✅ 已完成 | 熟悉   |
+| 06  | [[ch02-react-basics/06-event-handling\|事件处理]]           | ✅ 已完成 | 熟悉   |
+| 07  | [[ch02-react-basics/07-conditional-rendering\|条件渲染]]    | ✅ 已完成 | 熟悉   |
+| 08  | [[ch02-react-basics/08-list-rendering\|列表渲染与 key]]      | ✅ 已完成 | 熟悉   |
+| 09  | [[ch02-react-basics/09-form-handling\|表单处理]]            | ✅ 已完成 | 熟悉   |
+| 10  | [[ch02-react-basics/10-component-composition\|组件组合与拆分]] | ✅ 已完成 | 熟悉   |
+| 99  | [[ch02-react-basics/99-summary\|章节总结]]                  | ✅ 已完成 | 熟悉   |
 
-**章节进度**：5 / 12 节
+**章节进度**：12 / 12 节 ✅ 已完成
 
 📝 **复习笔记**：[[ch02-react-basics/review-01-fundamentals\|React 基础四要素]]（01-04 节综合复习）
 
@@ -65,9 +65,18 @@ tags:
 
 | 节 | 标题 | 状态 | 掌握程度 |
 |---|------|------|---------|
-| 00 | [[ch03-react-hooks/00-overview\|概述]] | ⏳ 未开始 | - |
+| 00 | [[ch03-hooks-deep-dive/00-overview\|概述]] | ✅ 已完成 | - |
+| 01 | [[ch03-hooks-deep-dive/01-hooks-intro\|Hooks 入门]] | ✅ 已完成 | 熟悉 |
+| 02 | [[ch03-hooks-deep-dive/02-useeffect-basics\|useEffect 基础]] | ⏳ 未开始 | - |
+| 03 | [[ch03-hooks-deep-dive/03-useeffect-advanced\|useEffect 进阶]] | ⏳ 未开始 | - |
+| 04 | [[ch03-hooks-deep-dive/04-useref\|useRef]] | ⏳ 未开始 | - |
+| 05 | [[ch03-hooks-deep-dive/05-usecontext\|useContext]] | ⏳ 未开始 | - |
+| 06 | [[ch03-hooks-deep-dive/06-custom-hooks\|自定义 Hooks]] | ⏳ 未开始 | - |
+| 07 | [[ch03-hooks-deep-dive/07-performance-hooks\|性能优化 Hooks]] | ⏳ 未开始 | - |
+| 08 | [[ch03-hooks-deep-dive/08-hooks-patterns\|Hooks 模式与最佳实践]] | ⏳ 未开始 | - |
+| 99 | [[ch03-hooks-deep-dive/99-summary\|章节总结]] | ⏳ 未开始 | - |
 
-**章节进度**：0 / ? 节（待规划）
+**章节进度**：2 / 10 节
 
 ---
 
@@ -156,8 +165,8 @@ flowchart LR
     I --> J[项目实战]
 
     style A fill:#d4edda,stroke:#28a745
-    style B fill:#fef3c7,stroke:#f59e0b
-    style C fill:#f5f5f5,stroke:#999
+    style B fill:#d4edda,stroke:#28a745
+    style C fill:#fff3cd,stroke:#ffc107
     style D fill:#f5f5f5,stroke:#999
     style E fill:#f5f5f5,stroke:#999
     style F fill:#f5f5f5,stroke:#999
@@ -189,7 +198,7 @@ flowchart LR
 完成本系列学习后，你将能够：
 
 - [x] 熟练使用 ES6+ 语法编写现代 JavaScript
-- [ ] 理解 React 核心概念，编写函数组件
+- [x] 理解 React 核心概念，编写函数组件
 - [ ] 熟练使用 React Hooks 管理状态和副作用
 - [ ] 使用 TypeScript 进行类型安全的 React 开发
 - [ ] 配置和使用 React Router 实现 SPA 路由

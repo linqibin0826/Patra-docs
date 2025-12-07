@@ -2,8 +2,9 @@
 type: adr
 adr_id: 6
 date: 2025-12-01
-status: accepted
+status: superseded
 date_decided: 2025-12-01
+date_superseded: 2025-12-04
 deciders: [Qibin Lin]
 technical_debt: none
 tags:
@@ -16,7 +17,9 @@ tags:
 
 ## 状态
 
-**accepted**
+**superseded**（已被取代）
+
+> **注意**：此决策已在 v0.6.0 版本被取代。导入语义简化为「一次性初始化」后，缓存机制不再必要，已改为直接从源站下载。详见 patra-catalog README v0.6.0 变更日志。
 
 ## 背景
 
