@@ -1,7 +1,7 @@
 ---
 title: 架构决策记录
 type: moc
-updated: 2025-12-01
+updated: 2025-12-08
 ---
 
 # 架构决策记录 (ADR)

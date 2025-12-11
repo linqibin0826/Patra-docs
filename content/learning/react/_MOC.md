@@ -67,16 +67,16 @@ tags:
 |---|------|------|---------|
 | 00 | [[ch03-hooks-deep-dive/00-overview\|概述]] | ✅ 已完成 | - |
 | 01 | [[ch03-hooks-deep-dive/01-hooks-intro\|Hooks 入门]] | ✅ 已完成 | 熟悉 |
-| 02 | [[ch03-hooks-deep-dive/02-useeffect-basics\|useEffect 基础]] | ⏳ 未开始 | - |
-| 03 | [[ch03-hooks-deep-dive/03-useeffect-advanced\|useEffect 进阶]] | ⏳ 未开始 | - |
-| 04 | [[ch03-hooks-deep-dive/04-useref\|useRef]] | ⏳ 未开始 | - |
+| 02 | [[ch03-hooks-deep-dive/02-useeffect-basics\|useEffect 基础]] | ✅ 已完成 | 熟悉 |
+| 03 | [[ch03-hooks-deep-dive/03-useeffect-advanced\|useEffect 进阶]] | ✅ 已完成 | 熟悉 |
+| 04 | [[ch03-hooks-deep-dive/04-useref\|useRef]] | ✅ 已完成 | 熟悉 |
 | 05 | [[ch03-hooks-deep-dive/05-usecontext\|useContext]] | ⏳ 未开始 | - |
 | 06 | [[ch03-hooks-deep-dive/06-custom-hooks\|自定义 Hooks]] | ⏳ 未开始 | - |
 | 07 | [[ch03-hooks-deep-dive/07-performance-hooks\|性能优化 Hooks]] | ⏳ 未开始 | - |
 | 08 | [[ch03-hooks-deep-dive/08-hooks-patterns\|Hooks 模式与最佳实践]] | ⏳ 未开始 | - |
 | 99 | [[ch03-hooks-deep-dive/99-summary\|章节总结]] | ⏳ 未开始 | - |
 
-**章节进度**：2 / 10 节
+**章节进度**：5 / 10 节
 
 ---
 

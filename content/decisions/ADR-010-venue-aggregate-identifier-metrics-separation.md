@@ -155,6 +155,23 @@ public interface VenueRepository {
 - 无法保证数据一致性
 - 不符合关系型数据库范式
 
+## 后续演进
+
+> **注意**：本 ADR 的部分设计已在 [[ADR-014]] 中演进调整。
+
+随着 Serfile 数据源接入（[[ADR-011]]），`VenueAggregate` 新增了 `meshTerms`、`relations`、`indexingHistories` 三个子实体集合，导致聚合膨胀至约 1030 行代码。
+
+基于 Vaughn Vernon 的"设计小聚合"原则，[[ADR-014]] 对本 ADR 的设计进行了以下调整：
+
+| 原设计（ADR-010） | 演进后（ADR-014） |
+|------------------|------------------|
+| `VenueMetrics` 作为聚合内实体 | 重命名为 `VenuePublicationStats`，改为 Record 值对象，移出聚合 |
+| `VenueIdentifier.isPrimary` 字段 | 删除，简化标识符管理逻辑 |
+| `yearlyMetrics` 集合在聚合内 | 移至 `VenueSupplementRepository` 独立管理 |
+| 实体使用 Class（含 id 字段） | 改为 Record（Domain 层无 id，id 仅存在于 Infrastructure 层 DO） |
+
+**核心变化**：`yearlyMetrics` 无聚合级不变量需要保护，作为"补充数据"通过 `VenueSupplementRepository` 直接管理，而非作为聚合内实体。
+
 ## 参考资料
 
 - [OpenAlex Sources API](https://docs.openalex.org/api-entities/sources)
